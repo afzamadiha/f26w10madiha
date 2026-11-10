@@ -102,7 +102,8 @@ h1{
  section:nth-of-type(2) article {
     /*the direction of the flex is relative tothe language the site is written in */
    /*flex direction can also be column, if u want things stack vertically..*/
-   display:row-reverse;
+   display:flex;
+   flex-direction:row-reverse;
  }
 
 
@@ -135,4 +136,77 @@ section:nth-of-type(4) article div{
 other than objects...*/
 section:nth-of-type(4) article div:nth-of-type{
     flex-grow:2;
+}
+
+
+/*****************************************************************
+                    FLEX EXAMPLE FOR NAV
+***************************************************************/
+
+nav ul{
+    /*make the list items inside the ul sit next to each other*/
+
+    display:flex;
+
+
+    /*you can tell the objects to wrap to the next line (row or column) if they no longer fit inside the flexbox*/
+    flex-wrap:wrap;
+
+    /*justify-content:space-evenly;
+    ... this would be good if u wanted a text-based nav*/
+}
+
+/*...we can also use flex to make the nav look more like buttons*/
+
+nav ul li{
+    flex-grow:1;
+    background-color:coral;
+
+    /*you can put a flexbox inside a flexbox*/
+    display:flex;
+}
+
+
+nav ul li a{
+    flex-grow:1;
+    text-align:center;
+    padding:1em;
+}
+
+
+nav ul li a:hover{
+    background-color:aqua;
+}
+
+
+
+/*********************************************************************
+                MEDIA QUERIES
+ ***************************************************/
+
+/*at a minimum of 640px, and above,apply these styles*/
+@media screen and (min-width:640px){
+/*apply flexbox to the div with the class flexer,
+which contains the main and the aside, so the main and aside will sit next to each other*/
+.flexer{
+    display:flex;
+    gap:1em;
+}
+
+
+/*using flex-grow , weight the main and aside*/
+main{
+    flex-grow:4;
+
+    /*make the content in the main distributed vertically to take up as much space as the sidebar*/
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    /*default order is 1, so by setting this to 2, we move it after the aside*/
+    order:2;
+}
+aside{
+    flex-grow:1;
+}
 }
